@@ -17,8 +17,13 @@ public class Order {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    //일대일
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
     //양방향 연관관계
-    @OneToMany(mappedBy = "ORDER")
+    @OneToMany(mappedBy = "order")
     List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
