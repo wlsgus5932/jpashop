@@ -1,1 +1,1 @@
-# jpashop
+jpql 연습
