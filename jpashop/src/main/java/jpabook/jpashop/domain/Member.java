@@ -3,7 +3,11 @@ package jpabook.jpashop.domain;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
 public class Member {
@@ -15,35 +19,13 @@ public class Member {
     @Column(name = "USERNAME")
     private String username;
 
-    //기간
-    @Embedded
-    private Period wordPeriod;
-
     //주소
     @Embedded
-    private Address homeAdrdress;
+    private Address address;
+    private DeliveryStatus status;
 
-
-    //양방향 연관 관계
-//    @OneToMany(mappedBy = "MEMBER")
-//    private List<Order> orders = new ArrayList<>();
-
-
-    public Period getWordPeriod() {
-        return wordPeriod;
-    }
-
-    public void setWordPeriod(Period wordPeriod) {
-        this.wordPeriod = wordPeriod;
-    }
-
-    public Address getHomeAdrdress() {
-        return homeAdrdress;
-    }
-
-    public void setHomeAdrdress(Address homeAdrdress) {
-        this.homeAdrdress = homeAdrdress;
-    }
+    @OneToOne(mappedBy = "delivery", fetch = LAZY)
+    private Order order;
 
     public Long getId() {
         return id;
@@ -61,4 +43,27 @@ public class Member {
         this.username = username;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public DeliveryStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(DeliveryStatus status) {
+        this.status = status;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

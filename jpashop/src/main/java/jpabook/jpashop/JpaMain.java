@@ -18,12 +18,13 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setUsername("hello");
-            member.setHomeAdrdress(new Address("city", "street", "100"));
-            member.setWordPeriod(new Period(LocalDateTime.now(), LocalDateTime.now()));
 
-            em.persist(member);
+            Book book = new Book();
+            book.setAuthor("박진현");
+            book.setName("JPA");
+
+            em.persist(book);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
