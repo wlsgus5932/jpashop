@@ -43,12 +43,12 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select distinct t from Team t join fetch t.members";
-            List<Team> result = em.createQuery(query, Team.class)
+            List<Member> result = em.createNamedQuery("Member.findByUsername", Member.class)
+                    .setParameter("username", "회원2")
                     .getResultList();
 
-            for (Team t : result) {
-                System.out.println(t.getName() + ","+ t.getMembers());
+            for (Member member : result) {
+                System.out.println(result);
             }
             tx.commit();
         } catch (Exception e) {
