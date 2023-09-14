@@ -36,12 +36,6 @@ public class JpaMain {
             delivery.setAddress(new Address("city", "street", "100000"));
             em.persist(delivery);
 
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrderPrice(10000);
-            orderItem.setCount(3);
-            orderItem.setOrder(order);
-            em.persist(orderItem);
-
             List<Member> result = em.createQuery("select m from Member m where m.username = '박진현'", Member.class)
                     .getResultList();
 
